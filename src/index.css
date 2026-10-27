@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Inter, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+
+[data-theme="light"] {
+  --bg: linear-gradient(180deg, #d9d6ff 0%, #9a9dff 34%, #5058f2 68%, #2b31c9 100%);
+  --card: rgb(255 255 255 / 0.22);
+  --card-line: rgb(255 255 255 / 0.4);
+  --field: rgb(255 255 255 / 0.88);
+  --field-fg: #151540;
+  --tab: #ffffff;
+  --tab-fg: #0f1030;
+  --accent: #ffffff;
+  --accent-fg: #1c20a8;
+  --wave: 255 255 255;
+}
+
+[data-theme="dark"] {
+  --bg: linear-gradient(180deg, #2a2870 0%, #1a1b8a 38%, #0f1157 70%, #070826 100%);
+  --card: rgb(8 9 40 / 0.45);
+  --card-line: rgb(255 255 255 / 0.14);
+  --field: rgb(5 6 28 / 0.7);
+  --field-fg: #eef0ff;
+  --tab: #000000;
+  --tab-fg: #ffffff;
+  --accent: #ffffff;
+  --accent-fg: #0a0b3a;
+  --wave: 120 130 255;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  color: #fff;
+  background: var(--bg) fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+}
+.range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.3);
+}
+.range::-moz-range-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.3);
+}
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -8px;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.35);
+}
+.range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 9999px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.35);
+}
+.range:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+  border-radius: 9999px;
+}
+
+.grid-floor {
+  position: absolute;
+  inset: auto -20% 0;
+  height: 100%;
+  background-image:
+    linear-gradient(rgb(var(--wave) / 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--wave) / 0.28) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: perspective(420px) rotateX(62deg);
+  transform-origin: bottom;
+  -webkit-mask-image: linear-gradient(to top, #000, transparent 85%);
+  mask-image: linear-gradient(to top, #000, transparent 85%);
+}
+
+.wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  animation: drift linear infinite;
+  will-change: transform;
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wave {
+    animation: none;
+  }
+}
